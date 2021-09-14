@@ -1,0 +1,23 @@
+Try {
+    if (Get-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*" | Where-Object {$_.DisplayName -Like "TeamViewer*"}) {
+        Write-output "Removing TeamViewer"
+        $TV = Get-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*" | Where-Object {$_.DisplayName -Like "TeamViewer*"}
+        Start-Process -FilePath ($TV.UninstallString) -ArgumentList "/S" -WindowStyle Hidden
+        Exit 0
+    }
+     if (Get-ItemProperty "HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*" | Where-Object {$_.DisplayName -Like "TeamViewer*"}) {
+        Write-output "Removing TeamViewer"
+        $TV = Get-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*" | Where-Object {$_.DisplayName -Like "TeamViewer*"}
+        Start-Process -FilePath ($TV.UninstallString) -ArgumentList "/S" -WindowStyle Hidden
+        Exit 0
+    } else {
+        Write-output "TeamViewer not Installer"
+        Exit 0
+    }
+}
+
+Catch {
+    $errMsg = $_.Exception.Message
+    write-output $errMsg
+    #exit 1
+}
