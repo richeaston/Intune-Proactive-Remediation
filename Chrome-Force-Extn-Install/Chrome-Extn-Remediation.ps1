@@ -93,7 +93,7 @@ Function Install-ChromeExtension ($extn) {
 
 
 # add the enforce extnID's into the array
-$extns = @("cjbpfomjjhkmfkembnjejkhpihjnomne","lfochlioelphaglamdcakfjemolpichk", "nlipoenfbbikpbjkfpfillcgkoblgpmj", "bbcinlkgjjkejfdpemiealijmmooekmp" )
+$extns = @("nlipoenfbbikpbjkfpfillcgkoblgpmj" <#Awesome screenshot#>, "bbcinlkgjjkejfdpemiealijmmooekmp" <#lastpass#> )
 
 foreach ($extn in $extns) {
     
