@@ -66,7 +66,7 @@ Function get-ChromeExtension ($extn) {
 }
 
 # add the enforce extnID's into the array
-$extns = @("cjbpfomjjhkmfkembnjejkhpihjnomne" <#Oracle Smart view#>,"lfochlioelphaglamdcakfjemolpichk" <#keeper#>, "nlipoenfbbikpbjkfpfillcgkoblgpmj" <#awesome screenshot#>, "bbcinlkgjjkejfdpemiealijmmooekmp" <#lastpass#> )
+$extns = @("nlipoenfbbikpbjkfpfillcgkoblgpmj" <#awesome screenshot#>, "bbcinlkgjjkejfdpemiealijmmooekmp" <#lastpass#> )
 
 foreach ($extn in $extns) {
     
