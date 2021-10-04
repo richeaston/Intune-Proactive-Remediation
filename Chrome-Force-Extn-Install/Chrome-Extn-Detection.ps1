@@ -66,7 +66,7 @@ Function get-ChromeExtension ($extn) {
 }
 
 # add the enforce extnID's into the array
-$extns = @("cjbpfomjjhkmfkembnjejkhpihjnomne","lfochlioelphaglamdcakfjemolpichk", "nlipoenfbbikpbjkfpfillcgkoblgpmj" )
+$extns = @("nlipoenfbbikpbjkfpfillcgkoblgpmj" <#awesomescreenshot#>)
 
 foreach ($extn in $extns) {
     
