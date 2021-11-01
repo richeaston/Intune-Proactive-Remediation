@@ -8,7 +8,6 @@ if (!(test-path $regpath)) {
     new-item -Path $regpath -ItemType Directory  -force
 } 
 
-
 foreach ($i in $items) {
     $regitem = $i.Split(",")
     $name = $regitem[0]
@@ -34,8 +33,6 @@ foreach ($i in $items) {
     }
     
 }
-
-
 
 if ($good -eq 3 -and $bad -eq 0) {
     Write-output "Compliant"
