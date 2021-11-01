@@ -1,12 +1,10 @@
 ﻿Clear-host
 $regpath = "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Printers\PointAndPrint"
 $items = @("NoWarningNoElevationOnInstall,0", "UpdatePromptSettings,0", "RestrictDriverInstallationToAdministrators,1")
-    
 
 if (!(test-path $regpath)) {
     new-item -Path $regpath -ItemType Directory  -force
 } 
-
 
 foreach ($i in $items) {
     $regitem = $i.Split(",")
@@ -29,7 +27,6 @@ foreach ($i in $items) {
     finally {
         $Error.Clear()
     }
-    
 }
 
 Write-output "Compliant"
