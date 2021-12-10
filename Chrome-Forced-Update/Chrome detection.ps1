@@ -1,8 +1,12 @@
-﻿try { 
+Clear-host
+
+try { 
         Clear
         #check Chrome version installed    
-        $GCVersionInfo = (Get-Item (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\chrome.exe' -ErrorAction Ignore).'(Default)').VersionInfo
-        $GCVersion = $GCVersionInfo.ProductVersion
+        #$GCVersionInfo = (Get-Item (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\chrome.exe' -ErrorAction Ignore).'(Default)').VersionInfo
+        #$GCVersion = $GCVersionInfo.ProductVersion
+        $GCVersion = Get-ItemPropertyvalue -Path 'HKCU:\Software\Google\Chrome\BLBeacon' -Name version
+        
         Write-output "Installed Chrome Version: $GCVersion" 
 
         #Get latest version of Chrome
@@ -15,7 +19,7 @@
                 foreach ($GCV in $GCVer[4]) {
                         if($GCV -eq $GCVersion) {
                             #version installed is latest
-                            Write-output "$($Ver.os) Stable Version: $GCV,  Chrome is running stable"
+                            Write-output "$($Ver.os) Stable Version: $GCV,  Chrome $GCVersion is stable"
                             Exit 0
                         } else {
                             #version installed is not latest
