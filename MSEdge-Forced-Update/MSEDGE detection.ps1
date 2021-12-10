@@ -1,8 +1,9 @@
 ﻿try { 
         Clear
         #check MSEDGE version installed    
-        $EdgeVersionInfo = (Get-AppxPackage -Name "Microsoft.MicrosoftEdge.Stable").Version
-        Write-output "Installed MSEDGE Version: $EdgeVersionInfo" 
+        #$EdgeVersionInfo = (Get-AppxPackage -Name "Microsoft.MicrosoftEdge.Stable").Version
+        $edgeregistryver = Get-ItemPropertyvalue -Path 'HKCU:\\SOFTWARE\Microsoft\Edge\BLBeacon' -Name version
+        Write-output "Installed MSEDGE Version: $edgeregistryver" 
 
         #Get latest version of MSEDGE
         [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
@@ -10,15 +11,15 @@
 
         foreach ($ver in $j) {
             #$channel = $ver.Product 
-            if ($ver.Product -like 'stable' ) {
+            if ($ver.Product -eq 'Stable' ) {
                 foreach ($v in $(($ver.Releases).ProductVersion[0])) {
-                    if ($v -eq $EdgeVersionInfo ) {
+                    if ($v -match $edgeregistryver ) {
                         #version installed is latest
-                        Write-output "Stable Version: $v,  MSEDGE is the latest stable release"
+                        Write-output "Stable Version: $v,  MSEDGE Version $edgeregistryver is the latest stable release"
                         Exit 0
                     } else {
                         #version installed is not latest
-                        Write-output "Stable Version:$v, Installed Version $EdgeVersionInfo, Not safe, trigger alert" 
+                        Write-output "Stable Version:$v, Installed Version $edgeregistryver, Not safe, trigger alert" 
                         Exit 1
                     }
                 }
@@ -35,6 +36,3 @@ catch {
         Exit 1
     }
 }
-
-
-
